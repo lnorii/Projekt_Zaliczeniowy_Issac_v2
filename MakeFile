@@ -4,12 +4,12 @@ LDFLAGS = -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -lsfm
 
 SRCDIR = coding
 OBJDIR = obj
-BINDIR = bin
+BINDIR = Issac_v2
 
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
 DEPENDS = $(OBJECTS:.o=.d)
-TARGET = $(BINDIR)/main
+TARGET = $(BINDIR)/Issac_v2
 
 .PHONY: all clean
 
