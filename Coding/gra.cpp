@@ -1,9 +1,8 @@
 #include <iostream>
+#include "gra.hpp"
 
 using namespace std;
 
-int main()
-{
-    cout << "xd"<<endl;
-    return 0;
+void napis(string napis){
+    cout<<napis<<endl;
 }
