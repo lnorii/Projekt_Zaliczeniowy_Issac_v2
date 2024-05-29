@@ -1,7 +1,33 @@
-all: compile link
+CXX = g++
+CXXFLAGS = -Isrc/include -O2 -Wall -Wextra -MMD -MP
+LDFLAGS = -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -lsfml-audio
 
-compile:
-	g++ -Isrc/include -c coding/*.cpp
+SRCDIR = coding
+OBJDIR = obj
+BINDIR = bin
 
-link:
-	g++ *.o -o main -Lsrc/lib -lsfml-graphics -lsfml-window -lsfml-system -lopengl32 -lsfml-audio
+SOURCES = $(wildcard $(SRCDIR)/*.cpp)
+OBJECTS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
+DEPENDS = $(OBJECTS:.o=.d)
+TARGET = $(BINDIR)/main
+
+.PHONY: all clean
+
+all: $(TARGET)
+
+$(TARGET): $(OBJECTS) | $(BINDIR)
+	$(CXX) $^ -o $@ $(LDFLAGS)
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(OBJDIR):
+	mkdir $(OBJDIR)
+
+$(BINDIR):
+	mkdir $(BINDIR)
+
+clean:
+	rm -rf $(OBJDIR) $(BINDIR)
+
+-include $(DEPENDS)

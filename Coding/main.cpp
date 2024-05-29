@@ -1,10 +1,18 @@
-#include <Graphics.hpp>
+#include <SFML/Graphics.hpp>
+#include "gra.hpp"
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML TUTORIAL");
-    sf::CircleShape shape(200.f);
-    shape.setFillColor(sf::Color::Blue);
+string słowo = "gra";
+napis(słowo);
+
+    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+    sf::CircleShape shape(100.f);
+    shape.setFillColor(sf::Color::Red);
 
     while (window.isOpen())
     {
@@ -20,5 +28,5 @@ int main()
         window.display();
     }
 
-    return 0;
+return 0;
 }
