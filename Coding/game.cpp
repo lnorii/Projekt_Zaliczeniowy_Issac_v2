@@ -7,14 +7,13 @@
 #include <string>
 
 
-
-
+//do poprawy
 game::game(object_menager& om) : om(om) {
 }
 
 game::~game(){
 }
-
+//do poprawy
 void game::run(bool shop,bool death, bool wave){
     if (shop==false&&death==false&&wave==false)
     {
@@ -24,14 +23,14 @@ void game::run(bool shop,bool death, bool wave){
     }
     else
     {
-        cout<<"nie można załadować tekstur"<<endl;
+    //...........
     }
     
 }
-
+//wstępnie zrobione
 void game::display(const std::vector<std::unique_ptr<sf::Drawable>>& shapes){
 
-    sf::RenderWindow window(sf::VideoMode(), "SFML works!", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "SFML works!", sf::Style::Fullscreen);
 
     while (window.isOpen())
     {
