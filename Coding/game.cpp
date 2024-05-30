@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp> 
+#include <SFML/System.hpp>
 #include <string>
 
 
@@ -31,6 +33,12 @@ void game::run(bool shop,bool death, bool wave){
 void game::display(const std::vector<std::unique_ptr<sf::Drawable>>& shapes){
 
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "SFML works!", sf::Style::Fullscreen);
+    sf::Keyboard::Key key = sf::Keyboard::Key::Unknown;
+    srand(time(NULL));
+    sf::Clock clock;
+
+
+
 
     while (window.isOpen())
     {
@@ -39,7 +47,12 @@ void game::display(const std::vector<std::unique_ptr<sf::Drawable>>& shapes){
         {
             if (event.type == sf::Event::Closed)    
                 window.close();
+            else if (event.type == sf::Event::KeyPressed){
+                key = event.key.code;
+            }
         }
+
+        sf::Time elapsed = clock.restart();
 
         window.clear();
 
