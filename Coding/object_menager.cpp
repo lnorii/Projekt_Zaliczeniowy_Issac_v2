@@ -4,11 +4,10 @@
 #include "object_menager.hpp"
 
 
-
+//do zrobienia
 void object_menager::create_obj(){
-
 }
-
+//do poprawy
 void object_menager::load_obj(const std::string& texture_path, sf::Vector2f position, std::vector<std::unique_ptr<sf::Drawable>>& shapes) {
 
     sf::Texture texture;
@@ -27,6 +26,7 @@ void object_menager::load_obj(const std::string& texture_path, sf::Vector2f posi
     shapes.push_back(std::make_unique<sf::Sprite>(sprite));
 }
 
+//do zrobienia
 bool object_menager::collision(){
     return true;
 }

@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+#include "player.hpp"
+
 using namespace std;
 
 class game_menager
