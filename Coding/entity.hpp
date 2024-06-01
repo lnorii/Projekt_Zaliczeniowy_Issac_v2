@@ -1,17 +1,16 @@
 #pragma once
 
-using namespace std;
+#include <SFML/Graphics.hpp>
 
-class entity{
+class Entity : public sf::Drawable {
+protected:
+    int Hp;
 public:
-    int hp;
-    int dmg;
-    int movement_speed;
-
-    virtual bool death()=0;
-    virtual bool colision()=0;
-
-    virtual void atack()=0;
-    virtual void animation()=0;
-
+    sf::Sprite sprite;
+    virtual ~Entity() = default;
+    virtual bool death() = 0;
+    virtual bool colision() = 0;
+    virtual void attack() = 0;
+    virtual void move(const sf::Time &elapsed, const sf::Keyboard::Key &key) = 0;
+    int getHp() const;
 };

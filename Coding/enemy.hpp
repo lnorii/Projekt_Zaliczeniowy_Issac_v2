@@ -5,11 +5,15 @@
 
 using namespace sf;
 
-class enemy:public entity{
+class Enemy:public Entity{
 public:
-    FloatRect size;
-    int respawn;
-
-    virtual void move()=0;
+    bool death;
+    int Hp;
+    int movement_speed;
+    sf::Sprite sprite;
+    void move(const sf::Time &elapsed, const sf::Vector2f& graczPos);
+    void attack() override;
+    void random_respawn();
+    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 };
 
