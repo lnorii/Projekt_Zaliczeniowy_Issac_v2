@@ -4,7 +4,7 @@
 #include <iostream>
 
 Game::Game(ObjectManager& om) : om(om) {
-    om.createPlayer("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\guy.png", sf::Vector2f(200, 200));
+    om.createPlayer( sf::Vector2f(200, 200));
     // om.createEnemy("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\zombie.png");
 }
 

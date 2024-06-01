@@ -4,8 +4,8 @@ ObjectManager::ObjectManager() {
     // Inicjalizacja
 }
 
-void ObjectManager::createPlayer(const std::string& player_path, sf::Vector2f position) {
-    auto player = std::make_unique<Player>(player_path, position);
+void ObjectManager::createPlayer( sf::Vector2f position) {
+    auto player = std::make_unique<Player>( position);
 
     sf::Texture bulletTexture;
     if (!bulletTexture.loadFromFile("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\bullet.png")) {
