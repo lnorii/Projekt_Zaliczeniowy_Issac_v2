@@ -1,53 +1,35 @@
 #include "game.hpp"
-#include "game_menager.hpp"
-#include "object_menager.hpp"
-
-#include <iostream>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp> 
+#include <SFML/Window.hpp>
 #include <SFML/System.hpp>
-#include <string>
+#include <iostream>
 
-
-//do poprawy
-game::game(object_menager& om) : om(om) {
+Game::Game(ObjectManager& om) : om(om) {
+    om.createPlayer("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\guy.png", sf::Vector2f(200, 200));
+    // om.createEnemy("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\zombie.png");
 }
 
-game::~game(){
-}
-//do poprawy
-void game::run(bool shop,bool death, bool wave){
-    if (shop==false&&death==false&&wave==false)
-    {
-        std::vector<std::unique_ptr<sf::Drawable>> shapes;
-        om.load_obj("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\guy.png", {100.f, 150.f}, shapes);
-        display(shapes);
+Game::~Game() {}
+
+void Game::run(bool shop, bool death, bool wave) {
+    if (!shop && !death && !wave) {
+        display();
+    } else {
+        // Obsługa innych stanów
     }
-    else
-    {
-    //...........
-    }
-    
 }
-//wstępnie zrobione
-void game::display(const std::vector<std::unique_ptr<sf::Drawable>>& shapes){
 
+void Game::display() {
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "SFML works!", sf::Style::Fullscreen);
     sf::Keyboard::Key key = sf::Keyboard::Key::Unknown;
     srand(time(NULL));
     sf::Clock clock;
 
-
-
-
-    while (window.isOpen())
-    {
+    while (window.isOpen()) {
         sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)    
+        while (window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed)
                 window.close();
-            else if (event.type == sf::Event::KeyPressed){
+            else if (event.type == sf::Event::KeyPressed) {
                 key = event.key.code;
             }
         }
@@ -56,19 +38,17 @@ void game::display(const std::vector<std::unique_ptr<sf::Drawable>>& shapes){
 
         window.clear();
 
-        for (const auto& shape : shapes) {
-            window.draw(*shape);
+        const auto& gameObjects = om.getGameObjects();
+        for (const auto& obj : gameObjects) {
+            window.draw(*obj);
+
+            if (auto player = dynamic_cast<Player*>(obj.get())) {
+                player->move(elapsed, key);
+                player->attack();
+                player->updateBullets(elapsed);
+            }
         }
 
         window.display();
     }
-}
-
-int main(){
-object_menager om;
-game_menager gm;
-
-game g(om);
-g.run(gm.shop(),gm.death(),gm.wave());
-    return 0;
 }

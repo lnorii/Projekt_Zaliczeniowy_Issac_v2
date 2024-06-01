@@ -4,13 +4,11 @@
 #include <memory>
 #include <vector>
 
-#include "entity.hpp"
-
 using namespace std;
 using namespace sf;
 
 
-class maps{
+class maps:public Drawable{
 public:
     vector<unique_ptr<Drawable>> maps;
     Texture background;
