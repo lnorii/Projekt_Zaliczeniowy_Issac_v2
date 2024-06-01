@@ -2,8 +2,9 @@
 #include <iostream>
 #include <cmath>
 
-Player::Player(const std::string& texturePath, sf::Vector2f position)
+Player::Player( sf::Vector2f position)
     : hp(100), dmg(10), gold(0), attack_speed(1), range_attack(50), movement_speed(100), potion(3) {
+        const std::string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\guy.png";
     if (!texture.loadFromFile(texturePath)) {
         std::cout << "Failed to load texture: " << texturePath << std::endl;
     } else {

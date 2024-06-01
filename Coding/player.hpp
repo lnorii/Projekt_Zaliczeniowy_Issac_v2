@@ -22,7 +22,7 @@ private:
     sf::Texture bulletTexture;
 
 public:
-    Player(const std::string& texturePath, sf::Vector2f position);
+    Player( sf::Vector2f position);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     bool death() override;
     void attack() override;

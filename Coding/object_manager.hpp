@@ -13,7 +13,7 @@ private:
 
 public:
     ObjectManager();
-    void createPlayer(const std::string& texturePath, sf::Vector2f position);
+    void createPlayer( sf::Vector2f position);
     // void createEnemy(const std::string& texturePath);
 
     const std::vector<std::unique_ptr<sf::Drawable>>& getGameObjects() const;
