@@ -1,20 +1,22 @@
 #pragma once
-
 #include <SFML/Graphics.hpp>
-#include <vector>
 #include <memory>
+#include <vector>
+
 #include "player.hpp"
-#include "zombie.hpp"
-#include "enemy.hpp"
+#include "map.hpp"
+
+using namespace std;
+using namespace sf;
 
 class ObjectManager {
 private:
-    std::vector<std::unique_ptr<sf::Drawable>> gameObjects;
-
+    vector<unique_ptr<sf::Drawable>> gameObjects;
 public:
     ObjectManager();
-    void createPlayer( sf::Vector2f position);
-    // void createEnemy(const std::string& texturePath);
-
-    const std::vector<std::unique_ptr<sf::Drawable>>& getGameObjects() const;
+    void createPlayer(Vector2f position);
+    void createWall(Vector2f position,Vector2i size);
+    void createBackground(const Vector2u& windowSize);
+    const vector<unique_ptr<sf::Drawable>>& getGameObjects() const;
+    void addObject(unique_ptr<sf::Drawable> obj);
 };

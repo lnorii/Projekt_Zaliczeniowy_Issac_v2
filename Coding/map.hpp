@@ -7,15 +7,18 @@
 using namespace std;
 using namespace sf;
 
+class Map : public sf::Drawable {
+private:
+    vector<unique_ptr<Sprite>> walls;
+    unique_ptr<Sprite> background;
+    Texture background_texture;
+    Texture wall_texture;
 
-class maps:public Drawable{
+    virtual void draw(RenderTarget& target, RenderStates states) const override;
+
 public:
-    vector<unique_ptr<Drawable>> maps;
-    Texture background;
-    Texture wall;
-
-    void create_wall(Texture wall,vector<unique_ptr<Drawable>>& maps);
-    void create_background(Texture background,vector<unique_ptr<Drawable>>& maps);
-    bool colision();
-
+    Map();
+    void create_wall(Vector2f position,Vector2i size);
+    void create_background(const Vector2u& windowSize);
+    vector<std::unique_ptr<sf::Sprite>>& getWalls();
 };

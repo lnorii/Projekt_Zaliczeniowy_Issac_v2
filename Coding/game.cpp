@@ -4,8 +4,6 @@
 #include <iostream>
 
 Game::Game(ObjectManager& om) : om(om) {
-    om.createPlayer( sf::Vector2f(200, 200));
-    // om.createEnemy("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\zombie.png");
 }
 
 Game::~Game() {}
@@ -20,9 +18,15 @@ void Game::run(bool shop, bool death, bool wave) {
 
 void Game::display() {
     sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "SFML works!", sf::Style::Fullscreen);
+    sf::Vector2u windowSize = window.getSize();
     sf::Keyboard::Key key = sf::Keyboard::Key::Unknown;
     srand(time(NULL));
     sf::Clock clock;
+
+    om.createBackground(windowSize);
+    om.createWall(Vector2f(400, 400), Vector2i(150, 50));
+    om.createWall(Vector2f(800, 800), Vector2i(50, 150));
+    om.createPlayer(Vector2f(200, 200));
 
     while (window.isOpen()) {
         sf::Event event;
@@ -38,6 +42,10 @@ void Game::display() {
 
         window.clear();
 
+
+
+        
+        
         const auto& gameObjects = om.getGameObjects();
         for (const auto& obj : gameObjects) {
             window.draw(*obj);

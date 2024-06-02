@@ -6,6 +6,7 @@
 #include <vector>
 #include "entity.hpp"
 #include "bullet.hpp"
+#include "map.hpp"
 
 class Player : public Entity {
 private:
@@ -20,9 +21,10 @@ private:
     sf::Texture texture;
     std::vector<std::unique_ptr<Bullet>> bullets;
     sf::Texture bulletTexture;
+    Map* map;
 
 public:
-    Player( sf::Vector2f position);
+    Player( sf::Vector2f position, Map* map);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     bool death() override;
     void attack() override;
