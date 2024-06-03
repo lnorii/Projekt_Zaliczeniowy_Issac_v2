@@ -3,7 +3,7 @@
 #include <cmath>
 
 Player::Player(sf::Vector2f position, Map* map)
-    : hp(100), dmg(10), gold(0), attack_speed(1), range_attack(50), movement_speed(100), potion(3),map(map) {
+    : hp(100), dmg(10), gold(0), attack_speed(1), range_attack(50), movement_speed(100), potion(3),map(map),death(false),time_between_atack(0.5f) {
         const std::string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\guy.png";
     if (!texture.loadFromFile(texturePath)) {
         std::cout << "Failed to load texture: " << texturePath << std::endl;
@@ -24,23 +24,28 @@ void Player::setBulletTexture(const sf::Texture& texture) {
     bulletTexture = texture;
 }
 
-bool Player::death() {
-    // Implementacja
-    return false;
-}
 
 void Player::attack() {
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+    if (atack_frequency.getElapsedTime().asSeconds() < time_between_atack)
+    {
+        return;
+    }
+    
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         bullets.push_back(std::make_unique<Bullet>(bulletTexture, sprite.getPosition(), sf::Vector2f(0, -1), 500.0f, dmg, range_attack));
+        atack_frequency.restart();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         bullets.push_back(std::make_unique<Bullet>(bulletTexture, sprite.getPosition(), sf::Vector2f(0, 1), 500.0f, dmg, range_attack));
+        atack_frequency.restart();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         bullets.push_back(std::make_unique<Bullet>(bulletTexture, sprite.getPosition(), sf::Vector2f(-1, 0), 500.0f, dmg, range_attack));
+        atack_frequency.restart();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         bullets.push_back(std::make_unique<Bullet>(bulletTexture, sprite.getPosition(), sf::Vector2f(1, 0), 500.0f, dmg, range_attack));
+        atack_frequency.restart();
     }
 }
 
@@ -85,11 +90,19 @@ void Player::move(const sf::Time& elapsed, const sf::Keyboard::Key& key) {
 
 
 void Player::heal() {
-    Hp = 100;
+    hp = 100;
 }
 
 void Player::updateBullets(const sf::Time &elapsed) {
     for (auto& bullet : bullets) {
         bullet->update(elapsed);
     }
+}
+
+int Player::getHp() const {
+    return hp;
+}
+
+int Player::getdmg()const{
+    return dmg;
 }
