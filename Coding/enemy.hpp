@@ -10,6 +10,7 @@ public:
     bool death;
     int Hp;
     int movement_speed;
+    std::vector<std::unique_ptr<Entity>> Enemys;
     sf::Sprite sprite;
     void move(const sf::Time &elapsed, const sf::Vector2f& graczPos);
     void attack() override;
