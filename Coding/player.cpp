@@ -3,7 +3,7 @@
 #include <cmath>
 
 Player::Player(sf::Vector2f position, Map* map)
-    : hp(100), dmg(10), gold(0), attack_speed(1), range_attack(50), movement_speed(100), potion(3),map(map),death(false),time_between_atack(0.5f) {
+    : hp(100), dmg(10), gold(0), attack_speed(1), range_attack(150), movement_speed(100), potion(3),map(map),death(false),time_between_atack(0.5f) {
         const std::string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\guy.png";
     if (!texture.loadFromFile(texturePath)) {
         std::cout << "Failed to load texture: " << texturePath << std::endl;
@@ -49,9 +49,15 @@ void Player::attack() {
     }
 }
 
-bool Player::colision() {
-    // Implementacja
-    return false;
+void Player::colision(vector<Entity*> enemies) {
+    for (auto& Enemy : enemies) {
+        if (sprite.getGlobalBounds().intersects(Enemy->sprite.getGlobalBounds())) {
+            hp -= 10;
+            if (hp <= 0) {
+                death = true;
+            }
+        }
+    }
 }
 
 void Player::move(const sf::Time& elapsed, const sf::Keyboard::Key& key) {
@@ -93,16 +99,28 @@ void Player::heal() {
     hp = 100;
 }
 
-void Player::updateBullets(const sf::Time &elapsed) {
+void Player::updateBullets(const sf::Time &elapsed,vector<Entity*> enemies) {
     for (auto& bullet : bullets) {
         bullet->update(elapsed);
-    }
+        for (auto& Enemy : enemies) {
+                bullet->handleCollision(*Enemy);
+                if (Enemy->death) {
+                    gold += 10;
+                }
+            }
+        }
+    bullets.erase(std::remove_if(bullets.begin(), bullets.end(),[](const auto& Bullet) { return Bullet->get_dell();}), bullets.end());
 }
 
-int Player::getHp() const {
+
+int& Player::getHp()  { 
     return hp;
 }
 
 int Player::getdmg()const{
     return dmg;
+}
+
+sf::Sprite Player::getsprite(){
+    return sprite;
 }
