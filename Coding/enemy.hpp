@@ -8,13 +8,14 @@ using namespace sf;
 class Enemy:public Entity{
 public:
     bool death;
-    int Hp;
+    int hp;
     int movement_speed;
-    std::vector<std::unique_ptr<Entity>> Enemys;
     sf::Sprite sprite;
+    sf::Texture enemy_texture;
     void move(const sf::Time &elapsed, const sf::Vector2f& graczPos);
     void attack() override;
     void random_respawn();
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+    int& getHp()override;
 };
 

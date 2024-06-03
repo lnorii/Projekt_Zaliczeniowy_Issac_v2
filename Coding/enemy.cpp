@@ -39,3 +39,8 @@ void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     void Enemy::attack(){
 
     }
+
+    int& Enemy::getHp()  {
+    return hp;
+}
+

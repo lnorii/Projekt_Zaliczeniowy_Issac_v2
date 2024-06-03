@@ -30,11 +30,19 @@ void ObjectManager::createBackground(const sf::Vector2u& windowSize) {
     }
 }
 
+void ObjectManager::createEnemy(Vector2f position) {
+    auto enemy = std::make_unique<zombie>();
+    enemy->sprite.setPosition(position);
+    addObject(std::move(enemy)); // Dodajemy unikalny wskaźnik do gameObjects
+}
+
 const std::vector<std::unique_ptr<sf::Drawable>>& ObjectManager::getGameObjects() const {
     return gameObjects;
 }
 
+
 void ObjectManager::addObject(std::unique_ptr<sf::Drawable> obj) {
     gameObjects.push_back(std::move(obj));
 }
+
 

@@ -13,6 +13,13 @@
 class zombie : public Enemy {
 public:
     zombie();
-    void pokazHP(std::vector<std::unique_ptr<Entity>>& enemys);
+
+        void move(const sf::Time &elapsed, const sf::Keyboard::Key &key)  {
+        // Implementacja ruchu
+    }
+
+    void attack() override {
+        // Implementacja ataku
+    }
 
 };
