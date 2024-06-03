@@ -2,6 +2,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
+#include <memory>
 
 Game::Game(ObjectManager& om) : om(om) {
 }
@@ -28,7 +29,13 @@ void Game::display() {
     om.createWall(Vector2f(800, 800), Vector2i(50, 150));
     om.createPlayer(Vector2f(200, 200));
     om.createEnemy(Vector2f(600, 600));
-vector<Entity*> enemies;
+    om.createEnemy(Vector2f(1200, 1200));
+
+
+// ZMIENNA TYMCZASOWA OGÓLNIE JEST PO TO ŻEBY KOMPILOWAĆ
+ std::vector<Enemy*> enemies = om.getEnemies();
+
+
     while (window.isOpen()) {
         sf::Event event;
         while (window.pollEvent(event)) {
@@ -42,9 +49,6 @@ vector<Entity*> enemies;
         sf::Time elapsed = clock.restart();
 
         window.clear();
-
-
-
         
         
         const auto& gameObjects = om.getGameObjects();
@@ -55,13 +59,19 @@ vector<Entity*> enemies;
             if (auto player = dynamic_cast<Player*>(obj.get())) {
                 player->move(elapsed, key);
                 player->attack();
+                if(&enemies != nullptr){
                 player->updateBullets(elapsed,enemies);
                 player->colision(enemies);
             }
+            }
+            /////////////////////////////////////////  POPRAWIĆ //////////////////////////////////////
             if (auto enemy = dynamic_cast<Enemy*>(obj.get())) {
                 enemy->move(elapsed, dynamic_cast<Player*>(gameObjects[1].get())->getsprite().getPosition());
             }
         }
+        // if(&enemies != nullptr){
+        // om.updateEnemies(elapsed);
+        // }
 
         window.display();
     }

@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "entity.hpp"
+#include "enemy.hpp"
 
 class Bullet: public sf::Drawable {
 private:
@@ -19,6 +20,6 @@ public:
     float get_speed() const;
     int get_damage() const;
     bool& get_dell();
-    void handleCollision(Entity& enemy);
+    void handleCollision(Enemy& enemy);
 
 };

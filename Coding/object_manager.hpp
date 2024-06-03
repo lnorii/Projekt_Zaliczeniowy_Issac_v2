@@ -15,6 +15,7 @@ using namespace sf;
 class ObjectManager {
 private:
     vector<unique_ptr<sf::Drawable>> gameObjects;
+    std::vector<Enemy*> enemies;
 public:
     ObjectManager();
     void createPlayer(Vector2f position);
@@ -22,5 +23,10 @@ public:
     void createBackground(const Vector2u& windowSize);
     void createEnemy(Vector2f position);
     const vector<unique_ptr<sf::Drawable>>& getGameObjects() const;
+    const std::vector<Enemy*>& getEnemies() const;
     void addObject(unique_ptr<sf::Drawable> obj);
+
+    // void updateEnemies(const sf::Time& elapsed);
+
+
 };

@@ -44,3 +44,4 @@ void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     return hp;
 }
 
+

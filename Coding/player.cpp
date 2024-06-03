@@ -49,7 +49,9 @@ void Player::attack() {
     }
 }
 
-void Player::colision(vector<Entity*> enemies) {
+///////////////////////////////////////////  POPRAWIĆ //////////////////////////////////////
+void Player::colision(std::vector<Enemy*> enemies) {
+    if (!enemies.empty()) {
     for (auto& Enemy : enemies) {
         if (sprite.getGlobalBounds().intersects(Enemy->sprite.getGlobalBounds())) {
             hp -= 10;
@@ -57,6 +59,7 @@ void Player::colision(vector<Entity*> enemies) {
                 death = true;
             }
         }
+    }
     }
 }
 
@@ -99,17 +102,22 @@ void Player::heal() {
     hp = 100;
 }
 
-void Player::updateBullets(const sf::Time &elapsed,vector<Entity*> enemies) {
+///////////////////////////////////////////  POPRAWIĆ //////////////////////////////////////
+void Player::updateBullets(const sf::Time &elapsed, std::vector<Enemy*> enemies) {
     for (auto& bullet : bullets) {
         bullet->update(elapsed);
+        if (!enemies.empty()) {
         for (auto& Enemy : enemies) {
-                bullet->handleCollision(*Enemy);
-                if (Enemy->death) {
-                    gold += 10;
-                }
+            bullet->handleCollision(*Enemy);
+            if (Enemy->death) {
+                gold += 10;
             }
         }
-    bullets.erase(std::remove_if(bullets.begin(), bullets.end(),[](const auto& Bullet) { return Bullet->get_dell();}), bullets.end());
+    }
+    }
+    bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const auto& Bullet) { 
+        return Bullet->get_dell(); 
+    }), bullets.end());
 }
 
 
