@@ -39,53 +39,49 @@ void ObjectManager::createPlayer(sf::Vector2f position) {
 }
 
 
-void ObjectManager::createWall(sf::Vector2f position, sf::Vector2i size) {
+// void ObjectManager::createWall(sf::Vector2f position, sf::Vector2i size) {
 
-    auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](const std::shared_ptr<sf::Drawable>& ptr) {
-        return dynamic_cast<Map*>(ptr.get()) != nullptr;
-    });
+//     auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](const std::shared_ptr<sf::Drawable>& ptr) {
+//         return dynamic_cast<Map*>(ptr.get()) != nullptr;
+//     });
 
-    std::shared_ptr<Map> map = nullptr;
+//     std::shared_ptr<Map> map = nullptr;
 
-    if (it != gameObjects.end()) {
-        map = std::dynamic_pointer_cast<Map>(*it);
-    } else {
-        std::cout << "Map not found" << std::endl;
-    }
-    map->create_wall(position, size);
+//     if (it != gameObjects.end()) {
+//         map = std::dynamic_pointer_cast<Map>(*it);
+//     } else {
+//         std::cout << "Map not found" << std::endl;
+//     }
+//     map->create_wall(position, size);
     
-}
-
-void ObjectManager::createBackground(const sf::Vector2u& windowSize) {
-
-    auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](const std::shared_ptr<sf::Drawable>& ptr) {
-        return dynamic_cast<Map*>(ptr.get()) != nullptr;
-    });
-
-    std::shared_ptr<Map> map = nullptr;
-
-    if (it != gameObjects.end()) {
-        map = std::dynamic_pointer_cast<Map>(*it);
-    } else {
-        std::cout << "Map not found" << std::endl;
-    }
-    map->create_background(windowSize);
-}
-
-// void ObjectManager::createEnemy(sf::Vector2f position) {
-//     auto enemy = std::make_shared<zombie>();
-//     enemy->sprite.setPosition(position);
-//     enemies.push_back(dynamic_pointer_cast<Enemy>(enemy.get()));
-//     gameObjects.push_back(std::move(enemy));
 // }
+
+// void ObjectManager::createBackground(const sf::Vector2u& windowSize) {
+
+//     auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](const std::shared_ptr<sf::Drawable>& ptr) {
+//         return dynamic_cast<Map*>(ptr.get()) != nullptr;
+//     });
+
+//     std::shared_ptr<Map> map = nullptr;
+
+//     if (it != gameObjects.end()) {
+//         map = std::dynamic_pointer_cast<Map>(*it);
+//     } else {
+//         std::cout << "Map not found" << std::endl;
+//     }
+//     map->create_background(windowSize);
+// }
+
+void ObjectManager::createEnemy() {
+    auto enemy = std::make_shared<zombie>();
+    gameObjects.push_back(enemy);
+}
 
 vector<shared_ptr<sf::Drawable>>& ObjectManager::getGameObjects(){
     return gameObjects;
 }
 
-// const std::vector<shared_ptr<Enemy>>& ObjectManager::getEnemies() const {
-//     return enemies;
-// }
+
 
 // void ObjectManager::updateEnemies(const sf::Time& elapsed) {
 //     // Aktualizacja położenia przeciwników

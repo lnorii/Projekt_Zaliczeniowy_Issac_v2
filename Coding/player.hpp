@@ -33,12 +33,12 @@ public:
     Player( sf::Vector2f position, std::shared_ptr<Map> map);
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void attack() override;
-    void colision(std::vector<Enemy*> enemies);
+    void colision(vector<shared_ptr<sf::Drawable>> gameObjects);
     void move(const sf::Time &elapsed, const sf::Keyboard::Key &key) ;
     void heal();
     int& getHp()override;
     int getdmg()const;
     sf::Sprite getsprite();
     void setBulletTexture(const sf::Texture& texture);
-    void updateBullets(const sf::Time &elapsed,std::vector<Enemy*> enemies);
+    void updateBullets(const sf::Time &elapsed,vector<shared_ptr<sf::Drawable>> gameObjects);
 };

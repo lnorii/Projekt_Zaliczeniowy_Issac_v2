@@ -1,6 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "entity.hpp"
 #include "enemy.hpp"
 
