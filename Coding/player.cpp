@@ -51,17 +51,18 @@ void Player::attack() {
     }
 }
 
-///////////////////////////////////////////  POPRAWIĆ //////////////////////////////////////
-void Player::colision(std::vector<Enemy*> enemies) {
-    if (!enemies.empty()) {
-    for (auto& Enemy : enemies) {
-        if (sprite.getGlobalBounds().intersects(Enemy->sprite.getGlobalBounds())) {
+void Player::colision(vector<shared_ptr<sf::Drawable>> gameObjects) {
+    for (auto& obj : gameObjects) {
+        if(auto enemy = std::dynamic_pointer_cast<Enemy>(obj)){
+        if (sprite.getGlobalBounds().intersects(enemy->sprite.getGlobalBounds())) {
             hp -= 10;
             if (hp <= 0) {
-                death = true;
+                death = true;   
+                cout<<"koniec gry"<<endl;
             }
         }
     }
+    
     }
 }
 
@@ -104,18 +105,19 @@ void Player::heal() {
     hp = 100;
 }
 
-///////////////////////////////////////////  POPRAWIĆ //////////////////////////////////////
-void Player::updateBullets(const sf::Time &elapsed, std::vector<Enemy*> enemies) {
+void Player::updateBullets(const sf::Time &elapsed,vector<shared_ptr<sf::Drawable>> gameObjects) {
     for (auto& bullet : bullets) {
         bullet->update(elapsed);
-        if (!enemies.empty()) {
-        for (auto& Enemy : enemies) {
-            bullet->handleCollision(*Enemy);
-            if (Enemy->death) {
+        for (auto& obj : gameObjects) {
+            if(auto enemy = std::dynamic_pointer_cast<Enemy>(obj)){
+            bullet->handleCollision(*enemy);
+            if (enemy->death) {
                 gold += 10;
+                cout <<"+10 gold"<<endl;
+            }
             }
         }
-    }
+    
     }
     bullets.erase(std::remove_if(bullets.begin(), bullets.end(), [](const auto& Bullet) { 
         return Bullet->get_dell(); 

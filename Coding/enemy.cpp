@@ -7,6 +7,7 @@
 
 #include "entity.hpp"
 #include "enemy.hpp"
+#include "object_manager.hpp"
 
 
 void Enemy::move(const sf::Time &elapsed, const sf::Vector2f& graczPos){
@@ -26,15 +27,27 @@ void Enemy::draw(sf::RenderTarget& target, sf::RenderStates states) const {
     target.draw(sprite, states);
 }
 
-    void Enemy::random_respawn(){
-        int r = rand() % 4;
-        if (r == 0) sprite.setPosition(0, 0);
-        if (r == 1) sprite.setPosition(800, 0);
-        if (r == 2) sprite.setPosition(0, 600);
-        if (r == 3) sprite.setPosition(800, 600);
+void Enemy::random_respawn() {
+    // Generowanie losowych współrzędnych x i y w zakresie wymiarów okna
+    int x = rand() % 1920;
+    int y = rand() % 1080;
+
+    sprite.setPosition(x, y);
+}
+
+
+void Enemy::check_death(std::vector<std::shared_ptr<sf::Drawable>>& gameObjects) {
+for (auto& obj : gameObjects) {
+        if(auto enemy = std::dynamic_pointer_cast<Enemy>(obj)) {
+            if (enemy->death) {
+                objectsToRemove.push_back(obj);
+                }
+            }
+        }
+    for (const auto& objToRemove : objectsToRemove) {
+        gameObjects.erase(std::remove(gameObjects.begin(), gameObjects.end(), objToRemove), gameObjects.end());
     }
-
-
+}
 
     void Enemy::attack(){
 

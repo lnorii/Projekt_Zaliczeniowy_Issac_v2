@@ -4,7 +4,6 @@
 #include <iostream>
 #include <memory>
 
-
 Game::Game(ObjectManager& om) : om(om) {
 }
 
@@ -28,18 +27,17 @@ void Game::display() {
     bool player_r = false;
     bool enemy_r = false;
 
-    // om.createBackground(windowSize);
-    // om.createWall(Vector2f(400, 400), Vector2i(150, 50));
-    // om.createWall(Vector2f(800, 800), Vector2i(50, 150));
+
     om.createMap();
     om.createPlayer(Vector2f(200, 200));
-    // om.createEnemy(Vector2f(600, 600));
-    // om.createEnemy(Vector2f(1200, 1200));
+    om.createEnemy();
+    om.createEnemy();
+    om.createEnemy();
+    om.createEnemy();
 
 
-// ZMIENNA TYMCZASOWA OGÓLNIE JEST PO TO ŻEBY KOMPILOWAĆ
- std::vector<Enemy*> enemies; //= om.getEnemies();
 
+    
 
     while (window.isOpen()) {
         sf::Event event;
@@ -58,37 +56,42 @@ void Game::display() {
         
         auto& gameObjects = om.getGameObjects();
 
+
         for (auto& obj : gameObjects) {
-        if (auto map = std::dynamic_pointer_cast<Map>(obj)) {
-            if(!map_r){
-            map->create_background(windowSize);
-            map->create_wall(Vector2f(400, 400), Vector2i(150, 50));
-            map->create_wall(Vector2f(800, 800), Vector2i(50, 150));
-            map_r = true;}
+            if(player_r && map_r){
+                window.draw(*obj);
+            }
+
+            if (auto map = std::dynamic_pointer_cast<Map>(obj)) {
+                if(!map_r){
+                map->create_background(windowSize);
+                map->create_wall(Vector2f(400, 400), Vector2i(150, 50));
+                map->create_wall(Vector2f(800, 800), Vector2i(50, 150));
+                map_r = true;
+                }
             }
 
             if (auto player = std::dynamic_pointer_cast<Player>(obj)) {
                 player->move(elapsed, key);
                 player->attack();
-                player->updateBullets(elapsed, enemies);
-                player->colision(enemies);
+                player->updateBullets(elapsed, gameObjects);
+                player->colision(gameObjects);
                 player_r = true;
-            }
-                if(player_r && map_r){
-                window.draw(*obj);
+                for(auto& en : gameObjects){
+                    if(auto enemy = std::dynamic_pointer_cast<Enemy>(en)){
+                        enemy->move(elapsed,player->getsprite().getPosition());
+                    }   
+                }
             }
 
 
-            /////////////////////////////////////////  POPRAWIĆ //////////////////////////////////////
-            // if (auto enemy = dynamic_cast<Enemy*>(obj.get())) {
-            //     enemy->move(elapsed, dynamic_cast<Player*>(gameObjects[1].get())->getsprite().getPosition());
-            // }
-        //}
-        // if(&enemies != nullptr){
-        // om.updateEnemies(elapsed);
-        // }
+        }   
+            for (auto& obj : gameObjects) {
+            if(auto enemy = std::dynamic_pointer_cast<Enemy>(obj)){
+                enemy->check_death(gameObjects);
             }
-            window.display();
+        }
+        window.display();
     }
 }
 

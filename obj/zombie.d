@@ -1,4 +1,4 @@
-obj/game.o: coding/game.cpp coding/game.hpp src/include/SFML/Graphics.hpp \
+obj/zombie.o: coding/zombie.cpp src/include/SFML/Graphics.hpp \
  src/include/SFML/Window.hpp src/include/SFML/System.hpp \
  src/include/SFML/Config.hpp src/include/SFML/System/Clock.hpp \
  src/include/SFML/System/Export.hpp src/include/SFML/System/Time.hpp \
@@ -51,10 +51,8 @@ obj/game.o: coding/game.cpp coding/game.hpp src/include/SFML/Graphics.hpp \
  src/include/SFML/Graphics/Shader.hpp src/include/SFML/Graphics/Glsl.hpp \
  src/include/SFML/Graphics/Glsl.inl src/include/SFML/Graphics/Sprite.hpp \
  src/include/SFML/Graphics/Text.hpp \
- src/include/SFML/Graphics/VertexBuffer.hpp coding/object_manager.hpp \
- coding/player.hpp coding/entity.hpp coding/bullet.hpp coding/enemy.hpp \
- coding/map.hpp coding/zombie.hpp
-coding/game.hpp:
+ src/include/SFML/Graphics/VertexBuffer.hpp coding/entity.hpp \
+ coding/enemy.hpp coding/zombie.hpp
 src/include/SFML/Graphics.hpp:
 src/include/SFML/Window.hpp:
 src/include/SFML/System.hpp:
@@ -129,10 +127,6 @@ src/include/SFML/Graphics/Glsl.inl:
 src/include/SFML/Graphics/Sprite.hpp:
 src/include/SFML/Graphics/Text.hpp:
 src/include/SFML/Graphics/VertexBuffer.hpp:
-coding/object_manager.hpp:
-coding/player.hpp:
 coding/entity.hpp:
-coding/bullet.hpp:
 coding/enemy.hpp:
-coding/map.hpp:
 coding/zombie.hpp:
