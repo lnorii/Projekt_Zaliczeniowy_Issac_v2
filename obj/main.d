@@ -53,7 +53,7 @@ obj/main.o: coding/main.cpp coding/game.hpp src/include/SFML/Graphics.hpp \
  src/include/SFML/Graphics/Text.hpp \
  src/include/SFML/Graphics/VertexBuffer.hpp coding/object_manager.hpp \
  coding/player.hpp coding/entity.hpp coding/bullet.hpp coding/enemy.hpp \
- coding/map.hpp coding/zombie.hpp
+ coding/map.hpp coding/zombie.hpp coding/shop.hpp
 coding/game.hpp:
 src/include/SFML/Graphics.hpp:
 src/include/SFML/Window.hpp:
@@ -136,3 +136,4 @@ coding/bullet.hpp:
 coding/enemy.hpp:
 coding/map.hpp:
 coding/zombie.hpp:
+coding/shop.hpp:
