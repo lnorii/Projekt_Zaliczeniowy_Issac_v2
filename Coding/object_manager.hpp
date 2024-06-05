@@ -12,20 +12,26 @@
 using namespace std;
 using namespace sf;
 
+// Klasa zarządzająca obiektami w grze
 class ObjectManager {
 private:
-    vector<shared_ptr<sf::Drawable>> gameObjects;
-    vector<shared_ptr<Enemy>> enemies;
+    vector<shared_ptr<sf::Drawable>> gameObjects; // Wektor przechowujący wszystkie obiekty gry
+    vector<shared_ptr<Enemy>> enemies; // Wektor przechowujący przeciwników
 public:
-    ObjectManager();
+    ObjectManager(); // Konstruktor
+
+    // Metoda tworząca mapę
     void createMap();
+
+    // Metoda tworząca gracza
     void createPlayer(Vector2f position);
 
+    // Metoda tworząca przeciwnika
     void createEnemy();
-    vector<shared_ptr<sf::Drawable>>& getGameObjects() ;
-    // void addObject(shared_ptr<sf::Drawable> obj);
 
+    // Metoda zwracająca referencję do wektora przechowującego obiekty gry
+    vector<shared_ptr<sf::Drawable>>& getGameObjects();
+
+    // Metoda aktualizująca przeciwników
     void updateEnemies(const sf::Time& elapsed);
-
-
 };
