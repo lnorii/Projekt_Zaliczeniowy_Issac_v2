@@ -7,6 +7,7 @@
 #include "map.hpp"
 #include "enemy.hpp"
 #include "zombie.hpp"
+#include "shop.hpp"
 
 
 using namespace std;
@@ -28,6 +29,8 @@ public:
 
     // Metoda tworząca przeciwnika
     void createEnemy();
+
+    void createShop();
 
     // Metoda zwracająca referencję do wektora przechowującego obiekty gry
     vector<shared_ptr<sf::Drawable>>& getGameObjects();

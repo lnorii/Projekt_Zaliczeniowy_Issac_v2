@@ -45,9 +45,7 @@ void Game::display() {
     om.createPlayer(sf::Vector2f(200, 200));
     // Tworzenie przeciwników
     om.createEnemy();
-    om.createEnemy();
-    om.createEnemy();
-    om.createEnemy();
+    om.createShop();
 
     // Główna pętla gry
     while (window.isOpen()) {
@@ -97,7 +95,24 @@ void Game::display() {
                     if(auto enemy = std::dynamic_pointer_cast<Enemy>(en)){
                         // Obsługa ruchu przeciwników
                         enemy->move(elapsed,player->getsprite().getPosition());
-                    }   
+                    }
+                }
+            }
+            if(auto shop = std::dynamic_pointer_cast<Shop>(obj)){
+                bool foundEnemy = false;
+                for (auto& en : gameObjects) {
+                    if (std::dynamic_pointer_cast<Enemy>(en)) {
+                        foundEnemy = true;
+                        shop->aktywny = false;
+                        break;
+                    }
+                }
+                if (!foundEnemy) {
+                    shop->aktywny = true;
+                    shop->handleEvent(key);
+                    if(!shop->aktywny){
+                        om.createEnemy();
+                    }
                 }
             }
         }

@@ -3,7 +3,7 @@
 #include <cmath>
 
 Player::Player(sf::Vector2f position, std::shared_ptr<Map> map)
-    : hp(100), dmg(10), gold(0), attack_speed(1), range_attack(150), movement_speed(100), potion(3), map(map), death(false), time_between_atack(0.5f) {
+    : hp(100), dmg(10), gold(100), attack_speed(1), range_attack(150), movement_speed(100), potion(3), map(map), death(false), time_between_atack(0.5f) {
     // Wczytanie tekstury gracza
     const std::string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\guy.png";
     if (!texture.loadFromFile(texturePath)) {
@@ -124,7 +124,7 @@ int& Player::getHp() {
     return hp;
 }
 
-int Player::getdmg() const {
+int& Player::getdmg()  {
     // Zwrócenie wartości obrażeń gracza
     return dmg;
 }
@@ -133,3 +133,16 @@ sf::Sprite Player::getsprite() {
     // Zwrócenie sprite'a gracza
     return sprite;
 }
+
+int& Player::getgold(){
+    return gold;
+}
+
+float& Player::getspeed(){
+    return movement_speed;
+}
+
+float& Player::gettime_between_atack(){
+    return time_between_atack;
+}
+
