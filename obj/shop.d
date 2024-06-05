@@ -1,8 +1,8 @@
-obj/player.o: coding/player.cpp coding/player.hpp \
- src/include/SFML/Graphics.hpp src/include/SFML/Window.hpp \
- src/include/SFML/System.hpp src/include/SFML/Config.hpp \
- src/include/SFML/System/Clock.hpp src/include/SFML/System/Export.hpp \
- src/include/SFML/System/Time.hpp src/include/SFML/System/Err.hpp \
+obj/shop.o: coding/shop.cpp coding/shop.hpp src/include/SFML/Graphics.hpp \
+ src/include/SFML/Window.hpp src/include/SFML/System.hpp \
+ src/include/SFML/Config.hpp src/include/SFML/System/Clock.hpp \
+ src/include/SFML/System/Export.hpp src/include/SFML/System/Time.hpp \
+ src/include/SFML/System/Err.hpp \
  src/include/SFML/System/FileInputStream.hpp \
  src/include/SFML/System/InputStream.hpp \
  src/include/SFML/System/NonCopyable.hpp src/include/SFML/System/Lock.hpp \
@@ -51,10 +51,10 @@ obj/player.o: coding/player.cpp coding/player.hpp \
  src/include/SFML/Graphics/Shader.hpp src/include/SFML/Graphics/Glsl.hpp \
  src/include/SFML/Graphics/Glsl.inl src/include/SFML/Graphics/Sprite.hpp \
  src/include/SFML/Graphics/Text.hpp \
- src/include/SFML/Graphics/VertexBuffer.hpp coding/entity.hpp \
- coding/bullet.hpp coding/enemy.hpp coding/map.hpp \
- coding/object_manager.hpp coding/zombie.hpp coding/shop.hpp
-coding/player.hpp:
+ src/include/SFML/Graphics/VertexBuffer.hpp coding/object_manager.hpp \
+ coding/player.hpp coding/entity.hpp coding/bullet.hpp coding/enemy.hpp \
+ coding/map.hpp coding/zombie.hpp
+coding/shop.hpp:
 src/include/SFML/Graphics.hpp:
 src/include/SFML/Window.hpp:
 src/include/SFML/System.hpp:
@@ -129,10 +129,10 @@ src/include/SFML/Graphics/Glsl.inl:
 src/include/SFML/Graphics/Sprite.hpp:
 src/include/SFML/Graphics/Text.hpp:
 src/include/SFML/Graphics/VertexBuffer.hpp:
+coding/object_manager.hpp:
+coding/player.hpp:
 coding/entity.hpp:
 coding/bullet.hpp:
 coding/enemy.hpp:
 coding/map.hpp:
-coding/object_manager.hpp:
 coding/zombie.hpp:
-coding/shop.hpp:

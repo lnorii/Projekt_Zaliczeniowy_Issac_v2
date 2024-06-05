@@ -23,7 +23,7 @@ void Game::run(bool shop, bool death, bool wave) {
 // Metoda obsługująca wyświetlanie gry
 void Game::display() {
     // Tworzenie okna renderującego
-    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "SFML works!", sf::Style::Fullscreen);
+    sf::RenderWindow window(sf::VideoMode::getDesktopMode(), "Issac_v2", sf::Style::Fullscreen);
     // Pobranie rozmiaru okna
     sf::Vector2u windowSize = window.getSize();
     // Inicjalizacja klawisza na nieznany
