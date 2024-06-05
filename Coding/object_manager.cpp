@@ -49,6 +49,31 @@ void ObjectManager::createEnemy() {
     gameObjects.push_back(enemy);
 }
 
+void ObjectManager::createShop(){
+        auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](const std::shared_ptr<sf::Drawable>& ptr) {
+        return dynamic_cast<Player*>(ptr.get()) != nullptr;
+    });
+
+    std::shared_ptr<Player> player = nullptr;
+
+    if (it != gameObjects.end()) {
+        player = std::dynamic_pointer_cast<Player>(*it);
+    } else {
+        std::cout << "Player not found" << std::endl;
+    }
+
+    static sf::Texture tloTexture;
+    if (!tloTexture.loadFromFile("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\wall.png")) {
+        std::cout << "Failed to load bullet texture" << std::endl;
+    }
+
+    auto shop = std::make_shared<Shop>(tloTexture, player);
+
+    gameObjects.push_back(shop);
+    cout <<"stworzenie gracza"<<endl;
+
+}
+
 vector<shared_ptr<sf::Drawable>>& ObjectManager::getGameObjects(){
     // Zwracanie referencji do wektora przechowującego obiekty gry
     return gameObjects;

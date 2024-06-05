@@ -37,7 +37,10 @@ public:
     void move(const sf::Time &elapsed, const sf::Keyboard::Key &key); // Metoda poruszania się gracza
     void heal(); // Metoda leczenia gracza
     int& getHp() override; // Metoda zwracająca referencję do punktów życia gracza
-    int getdmg() const; // Metoda zwracająca obrażenia gracza
+    int& getdmg() ; // Metoda zwracająca obrażenia gracza
+    int& getgold();
+    float& getspeed();
+    float& gettime_between_atack();
     sf::Sprite getsprite(); // Metoda zwracająca sprite gracza
     void setBulletTexture(const sf::Texture& texture); // Metoda ustawiająca teksturę pocisku gracza
     void updateBullets(const sf::Time &elapsed, vector<shared_ptr<sf::Drawable>> gameObjects); // Metoda aktualizująca pociski gracza
