@@ -36,7 +36,7 @@ void Map::create_wall(Vector2f position, Vector2i size) {
 // Metoda tworząca tło mapy
 void Map::create_background(const Vector2u& windowSize) {
     // Ścieżka do tekstury tła
-    const string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\grass.png";
+    const string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\map.png";
     // Ładowanie tekstury
     if (!background_texture.loadFromFile(texturePath)) {
         cout << "Failed to load texture: " << texturePath << endl;

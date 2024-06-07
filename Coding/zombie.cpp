@@ -19,7 +19,12 @@ zombie::zombie() {
     } else {
         // Ustawienie tekstury dla sprite'a zombie i losowa pozycja respawnu
         sprite.setTexture(enemy_texture);
+        sf::Vector2f targetSize(60.0f, 80.0f);
+        sf::Vector2u textureSize = enemy_texture.getSize();
+        sprite.setScale(targetSize.x / textureSize.x, targetSize.y / textureSize.y);
         random_respawn();
     }
 }
+
+
 

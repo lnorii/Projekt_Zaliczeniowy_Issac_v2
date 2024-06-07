@@ -1,7 +1,7 @@
 #include "object_manager.hpp"
 #include <iostream>
 
-ObjectManager::ObjectManager() {
+ObjectManager::ObjectManager():wave(0),difficulty_increase(2),upgrade(20){
     // Konstruktor
 }
 
@@ -43,10 +43,22 @@ void ObjectManager::createPlayer(sf::Vector2f position) {
     cout <<"stworzenie gracza"<<endl;
 }
 
-void ObjectManager::createEnemy() {
+void ObjectManager::createZombie() {
     // Tworzenie obiektu przeciwnika i dodawanie go do wektora gameObjects
-    auto enemy = std::make_shared<zombie>();
-    gameObjects.push_back(enemy);
+    auto z = std::make_shared<zombie>();
+    gameObjects.push_back(z);
+}
+
+void ObjectManager::createSlime() {
+    // Tworzenie obiektu przeciwnika i dodawanie go do wektora gameObjects
+    auto s = std::make_shared<slime>();
+    gameObjects.push_back(s);
+}
+
+void ObjectManager::createBoss() {
+    // Tworzenie obiektu przeciwnika i dodawanie go do wektora gameObjects
+    auto b = std::make_shared<boss>();
+    gameObjects.push_back(b);
 }
 
 void ObjectManager::createShop(){
@@ -74,7 +86,64 @@ void ObjectManager::createShop(){
 
 }
 
+void ObjectManager::createInterface(sf::Clock &clock,sf::RenderWindow &window){
+        auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](const std::shared_ptr<sf::Drawable>& ptr) {
+        return dynamic_cast<Player*>(ptr.get()) != nullptr;
+    });
+
+    std::shared_ptr<Player> player = nullptr;
+
+    if (it != gameObjects.end()) {
+        player = std::dynamic_pointer_cast<Player>(*it);
+    } else {
+        std::cout << "Player not found" << std::endl;
+    }
+
+    auto interface = std::make_shared<Interface>(player,clock,window);
+    gameObjects.push_back(interface);
+}
+
+
 vector<shared_ptr<sf::Drawable>>& ObjectManager::getGameObjects(){
     // Zwracanie referencji do wektora przechowującego obiekty gry
     return gameObjects;
 }
+
+int ObjectManager::getwave(){
+    return wave;
+}
+
+void ObjectManager::startwave(){
+    for(int i=0;i<wave+1;i++){
+        createZombie();
+        if(i>=2){
+            createSlime();
+        }
+        if(i==4 && wave+1==5){
+            createBoss();
+        }
+    }
+    if(wave>=difficulty_increase){
+        cout<<"wzmocnienie przeciwników"<<endl;
+        for (auto& obj : gameObjects) {
+            if(auto enemy = std::dynamic_pointer_cast<Enemy>(obj)){
+                enemy->movement_speed+=upgrade;
+                cout<<"zwiększenie prędkość przeciwników aktualna prędkość"<<enemy->movement_speed<<endl;
+            }
+        }
+    difficulty_increase+=1;
+    upgrade+=20;
+    }
+    wave++;
+    cout<<"fala numer"<<wave<<endl;
+}
+
+void ObjectManager::createRanking(const Vector2u& windowSize){
+    auto r = std::make_shared<Ranking>(windowSize);
+    gameObjects.push_back(r);
+}
+
+
+
+
+

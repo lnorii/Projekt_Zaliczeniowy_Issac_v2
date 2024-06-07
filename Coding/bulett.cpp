@@ -31,7 +31,7 @@ void Bullet::handleCollision(Enemy& Enemy) {
     if (&Enemy != nullptr) {
         // Sprawdź, czy doszło do kolizji z przeciwnikiem
         if (sprite.getGlobalBounds().intersects(Enemy.sprite.getGlobalBounds())) {
-            std::cout << "Wykryto kolizję z przeciwnikiem!" << std::endl;
+            // std::cout << "Wykryto kolizję z przeciwnikiem!" << std::endl;
             // Zadaj obrażenia przeciwnikowi
             Enemy.getHp() -= damage;
             // Jeśli przeciwnik nie ma już punktów życia, oznacz go jako martwego
@@ -40,7 +40,7 @@ void Bullet::handleCollision(Enemy& Enemy) {
                 std::cout << "Przeciwnik zabity!" << std::endl;
             }
             dell = true; // Oznacz pocisk do usunięcia po kolizji
-            std::cout << "Pocisk oznaczony do usunięcia." << std::endl;
+            // std::cout << "Pocisk oznaczony do usunięcia." << std::endl;
         }
     } else {
         std::cout << "Przeciwnik nie istnieje!" << std::endl;

@@ -3,14 +3,17 @@
 #include <cmath>
 
 Player::Player(sf::Vector2f position, std::shared_ptr<Map> map)
-    : hp(100), dmg(10), gold(100), attack_speed(1), range_attack(150), movement_speed(100), potion(3), map(map), death(false), time_between_atack(0.5f) {
+    : hp(100), dmg(10), gold(100), attack_speed(1), range_attack(250), movement_speed(100), potion(3), map(map), death(false), time_between_atack(0.5f),time_between_Colision(1.0f),points(0) {
     // Wczytanie tekstury gracza
-    const std::string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\guy.png";
+    const std::string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\player.png";
     if (!texture.loadFromFile(texturePath)) {
         std::cout << "Failed to load texture: " << texturePath << std::endl;
     } else {
         std::cout << "success to load texture: " << std::endl;
         sprite.setTexture(texture);
+        sf::Vector2f targetSize(60.0f, 80.0f);
+        sf::Vector2u textureSize = texture.getSize();
+        sprite.setScale(targetSize.x / textureSize.x, targetSize.y / textureSize.y);
         sprite.setPosition(position);
     }
 }
@@ -53,10 +56,14 @@ void Player::colision(vector<shared_ptr<sf::Drawable>> gameObjects) {
     for (auto& obj : gameObjects) {
         if (auto enemy = std::dynamic_pointer_cast<Enemy>(obj)) {
             if (sprite.getGlobalBounds().intersects(enemy->sprite.getGlobalBounds())) {
+                if (colision_cooldown.getElapsedTime().asSeconds() > time_between_Colision) {
                 hp -= 10;
+                cout <<"-10hp"<<endl;
+                colision_cooldown.restart();
+                }
                 if (hp <= 0) {
                     death = true;
-                    cout << "koniec gry" << endl;
+                    // cout << "koniec gry" << endl;
                 }
             }
         }
@@ -107,6 +114,7 @@ void Player::updateBullets(const sf::Time& elapsed, vector<shared_ptr<sf::Drawab
                 bullet->handleCollision(*enemy);
                 if (enemy->death) {
                     gold += 10;
+                    points += 10;
                     cout << "+10 gold" << endl;
                 }
             }
@@ -144,5 +152,13 @@ float& Player::getspeed(){
 
 float& Player::gettime_between_atack(){
     return time_between_atack;
+}
+
+bool Player::getdeath(){
+    return death;
+}
+
+int Player::getpoints(){
+    return points;
 }
 
