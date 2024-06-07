@@ -54,7 +54,8 @@ obj/game_menager.o: coding/game_menager.cpp coding/game_menager.hpp \
  src/include/SFML/Graphics/Text.hpp \
  src/include/SFML/Graphics/VertexBuffer.hpp coding/entity.hpp \
  coding/bullet.hpp coding/enemy.hpp coding/map.hpp \
- coding/object_manager.hpp coding/zombie.hpp coding/shop.hpp
+ coding/object_manager.hpp coding/zombie.hpp coding/slime.hpp \
+ coding/boss.hpp coding/shop.hpp coding/interface.hpp coding/ranking.hpp
 coding/game_menager.hpp:
 coding/player.hpp:
 src/include/SFML/Graphics.hpp:
@@ -137,4 +138,8 @@ coding/enemy.hpp:
 coding/map.hpp:
 coding/object_manager.hpp:
 coding/zombie.hpp:
+coding/slime.hpp:
+coding/boss.hpp:
 coding/shop.hpp:
+coding/interface.hpp:
+coding/ranking.hpp:
