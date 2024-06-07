@@ -1,8 +1,8 @@
-obj/main.o: coding/main.cpp coding/game.hpp src/include/SFML/Graphics.hpp \
- src/include/SFML/Window.hpp src/include/SFML/System.hpp \
- src/include/SFML/Config.hpp src/include/SFML/System/Clock.hpp \
- src/include/SFML/System/Export.hpp src/include/SFML/System/Time.hpp \
- src/include/SFML/System/Err.hpp \
+obj/ranking.o: coding/ranking.cpp coding/Ranking.hpp \
+ src/include/SFML/Graphics.hpp src/include/SFML/Window.hpp \
+ src/include/SFML/System.hpp src/include/SFML/Config.hpp \
+ src/include/SFML/System/Clock.hpp src/include/SFML/System/Export.hpp \
+ src/include/SFML/System/Time.hpp src/include/SFML/System/Err.hpp \
  src/include/SFML/System/FileInputStream.hpp \
  src/include/SFML/System/InputStream.hpp \
  src/include/SFML/System/NonCopyable.hpp src/include/SFML/System/Lock.hpp \
@@ -51,11 +51,8 @@ obj/main.o: coding/main.cpp coding/game.hpp src/include/SFML/Graphics.hpp \
  src/include/SFML/Graphics/Shader.hpp src/include/SFML/Graphics/Glsl.hpp \
  src/include/SFML/Graphics/Glsl.inl src/include/SFML/Graphics/Sprite.hpp \
  src/include/SFML/Graphics/Text.hpp \
- src/include/SFML/Graphics/VertexBuffer.hpp coding/object_manager.hpp \
- coding/player.hpp coding/entity.hpp coding/bullet.hpp coding/enemy.hpp \
- coding/map.hpp coding/zombie.hpp coding/slime.hpp coding/boss.hpp \
- coding/shop.hpp coding/interface.hpp coding/ranking.hpp
-coding/game.hpp:
+ src/include/SFML/Graphics/VertexBuffer.hpp
+coding/Ranking.hpp:
 src/include/SFML/Graphics.hpp:
 src/include/SFML/Window.hpp:
 src/include/SFML/System.hpp:
@@ -130,15 +127,3 @@ src/include/SFML/Graphics/Glsl.inl:
 src/include/SFML/Graphics/Sprite.hpp:
 src/include/SFML/Graphics/Text.hpp:
 src/include/SFML/Graphics/VertexBuffer.hpp:
-coding/object_manager.hpp:
-coding/player.hpp:
-coding/entity.hpp:
-coding/bullet.hpp:
-coding/enemy.hpp:
-coding/map.hpp:
-coding/zombie.hpp:
-coding/slime.hpp:
-coding/boss.hpp:
-coding/shop.hpp:
-coding/interface.hpp:
-coding/ranking.hpp:

@@ -51,7 +51,10 @@ obj/interface.o: coding/interface.cpp src/include/SFML/Graphics.hpp \
  src/include/SFML/Graphics/Shader.hpp src/include/SFML/Graphics/Glsl.hpp \
  src/include/SFML/Graphics/Glsl.inl src/include/SFML/Graphics/Sprite.hpp \
  src/include/SFML/Graphics/Text.hpp \
- src/include/SFML/Graphics/VertexBuffer.hpp coding/map.hpp
+ src/include/SFML/Graphics/VertexBuffer.hpp coding/interface.hpp \
+ coding/player.hpp coding/entity.hpp coding/bullet.hpp coding/enemy.hpp \
+ coding/map.hpp coding/object_manager.hpp coding/zombie.hpp \
+ coding/slime.hpp coding/boss.hpp coding/shop.hpp coding/ranking.hpp
 src/include/SFML/Graphics.hpp:
 src/include/SFML/Window.hpp:
 src/include/SFML/System.hpp:
@@ -126,4 +129,15 @@ src/include/SFML/Graphics/Glsl.inl:
 src/include/SFML/Graphics/Sprite.hpp:
 src/include/SFML/Graphics/Text.hpp:
 src/include/SFML/Graphics/VertexBuffer.hpp:
+coding/interface.hpp:
+coding/player.hpp:
+coding/entity.hpp:
+coding/bullet.hpp:
+coding/enemy.hpp:
 coding/map.hpp:
+coding/object_manager.hpp:
+coding/zombie.hpp:
+coding/slime.hpp:
+coding/boss.hpp:
+coding/shop.hpp:
+coding/ranking.hpp:
