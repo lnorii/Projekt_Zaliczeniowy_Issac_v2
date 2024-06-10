@@ -48,6 +48,7 @@ void Game::display() {
     om.createPlayer(sf::Vector2f(200, 200));
     om.createShop();
     om.createInterface(timer,window);
+    // rozpoczęcie rozgrywki 
     om.startwave();
     //rozpoczęcie rozgrywki
 
@@ -75,6 +76,7 @@ void Game::display() {
         // Renderowanie każdego obiektu na ekranie
         for (auto& obj : gameObjects) {
             if(player_r && map_r){
+
                 //Fragment debugujący
                     // if(std::dynamic_pointer_cast<Map>(obj)){
                     //     cout<<"mapa"<<endl;
@@ -97,6 +99,7 @@ void Game::display() {
                     // if(std::dynamic_pointer_cast<Shop>(obj)){
                     //     cout<<"sklep"<<endl;
                     // }
+
                 //rysowanie obiektów
                 window.draw(*obj);
             }

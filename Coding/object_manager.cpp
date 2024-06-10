@@ -75,7 +75,7 @@ void ObjectManager::createShop(){
     }
 
     static sf::Texture tloTexture;
-    if (!tloTexture.loadFromFile("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\wall.png")) {
+    if (!tloTexture.loadFromFile("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\map.png")) {
         std::cout << "Failed to load bullet texture" << std::endl;
     }
 
