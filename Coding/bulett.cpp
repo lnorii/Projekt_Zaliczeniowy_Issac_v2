@@ -4,7 +4,7 @@
 #include "bullet.hpp"
 #include "entity.hpp"
 #include "enemy.hpp"
-
+//Autor Dominik Komza
 // Konstruktor pocisku
 Bullet::Bullet(sf::Texture& texture, sf::Vector2f position, sf::Vector2f direction, float speed, int damage, float range)
 : direction(direction), speed(speed), damage(damage), range(range), startPos(position) {

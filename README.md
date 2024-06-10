@@ -7,3 +7,26 @@
  object_manager.cpp
  player.cpp
  zombie.cpp
+ 
+ Dominik Komza wykonał :
+ Bullet
+ Shop
+ranking
+main
+zombie 
+
+Mateusz Kozłowski wykonał:
+entity
+game
+map
+object menager
+slime
+boss
+
+
+Wspólnie wykonaliśmy:
+Player
+Enemy
+interface
+
+ 
