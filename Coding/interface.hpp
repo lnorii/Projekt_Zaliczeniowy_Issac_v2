@@ -18,8 +18,10 @@ private:
     sf::Clock &clock;
     sf::Text timeText;
     sf::Text hpText;
+    sf::Text waveText;
     sf::RectangleShape timeBackground;
     sf::RectangleShape hpBackground;
+    sf::RectangleShape WaveBackground;
     sf::RenderWindow &window;
 
 protected:
@@ -27,5 +29,5 @@ protected:
 
 public:
     Interface(std::shared_ptr<Player> player, sf::Clock &clock, sf::RenderWindow &window);
-    void update();
+    void update(int weve);
 };

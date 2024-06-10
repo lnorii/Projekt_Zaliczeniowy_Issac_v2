@@ -23,11 +23,16 @@ Interface::Interface(std::shared_ptr<Player> player, sf::Clock &clock, sf::Rende
     hpText.setFillColor(sf::Color::Red);
     hpText.setPosition(window.getSize().x - 110, 40); // Pozycja początkowa
 
+    waveText.setFont(font);
+    waveText.setCharacterSize(40);
+    waveText.setFillColor(sf::Color::White);
+    waveText.setPosition(window.getSize().x - 1015, 5);
+    WaveBackground.setFillColor(sf::Color::Black);
     timeBackground.setFillColor(sf::Color::Black);
     hpBackground.setFillColor(sf::Color::Black);
 }
 
-void Interface::update() {
+void Interface::update(int wave) {
     // Aktualizacja czasu
     elapsedTime = clock.getElapsedTime();
 
@@ -39,6 +44,10 @@ void Interface::update() {
     // Aktualizacja tła czasu
     timeBackground.setSize(sf::Vector2f(timeText.getLocalBounds().width + 20, timeText.getLocalBounds().height + 20));
     timeBackground.setPosition(timeText.getPosition().x - 10, timeText.getPosition().y - 10);
+
+    std::ostringstream waveStream;
+    waveStream << "Wave: " << wave;
+    waveText.setString(waveStream.str());
 
     // Aktualizacja tekstu HP
     std::ostringstream hpStream;
@@ -52,9 +61,10 @@ void Interface::update() {
 
 void Interface::draw(sf::RenderTarget &target, sf::RenderStates states) const {
     // Rysowanie tła i tekstów
-    std::cout << "Drawing Interface" << std::endl;
     target.draw(timeBackground, states);
     target.draw(timeText, states);
     target.draw(hpBackground, states);
     target.draw(hpText, states);
+    target.draw(waveText, states);
+
 }

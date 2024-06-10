@@ -17,6 +17,7 @@ public:
     mutable sf::Text saldoText;
     sf::Sprite tloSprite;
     std::shared_ptr<Player> player;
+    bool click;
 
     Shop(sf::Texture& tloTexture,std::shared_ptr<Player> player);
 

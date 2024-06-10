@@ -87,7 +87,7 @@ void ObjectManager::createShop(){
 }
 
 void ObjectManager::createInterface(sf::Clock &clock,sf::RenderWindow &window){
-        auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](const std::shared_ptr<sf::Drawable>& ptr) {
+    auto it = std::find_if(gameObjects.begin(), gameObjects.end(), [](const std::shared_ptr<sf::Drawable>& ptr) {
         return dynamic_cast<Player*>(ptr.get()) != nullptr;
     });
 

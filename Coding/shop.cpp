@@ -1,6 +1,6 @@
 #include "shop.hpp"
 
-Shop::Shop(sf::Texture& tloTexture,std::shared_ptr<Player> player) : player(player), aktywny(false) {
+Shop::Shop(sf::Texture& tloTexture,std::shared_ptr<Player> player) : player(player), aktywny(false),click(false) {
         if (!font.loadFromFile("C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\arial.ttf")) {
             std::cerr << "Failed to load font\n";
         }
@@ -51,7 +51,7 @@ void Shop::draw(sf::RenderTarget& target, sf::RenderStates states) const  {
     }
 
 void Shop::handleEvent(const sf::Keyboard::Key& key) {
-        if (aktywny) {
+        if (aktywny&&!click) {
             messageText.setString("");  // Clear previous messages
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)) {
                 cout << "wciskam 1"<<endl;
@@ -91,4 +91,11 @@ void Shop::handleEvent(const sf::Keyboard::Key& key) {
                 cout<<"klikam tab"<<endl;
             }
         }
+        if(sf::Keyboard::isKeyPressed(sf::Keyboard::Tab)||sf::Keyboard::isKeyPressed(sf::Keyboard::Num4)||sf::Keyboard::isKeyPressed(sf::Keyboard::Num3)||sf::Keyboard::isKeyPressed(sf::Keyboard::Num2)||sf::Keyboard::isKeyPressed(sf::Keyboard::Num1)){
+            click = true;
+        }
+        else{
+            click = false;
+        
     }
+}

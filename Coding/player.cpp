@@ -3,7 +3,7 @@
 #include <cmath>
 
 Player::Player(sf::Vector2f position, std::shared_ptr<Map> map)
-    : hp(100), dmg(10), gold(100), attack_speed(1), range_attack(250), movement_speed(100), potion(3), map(map), death(false), time_between_atack(0.5f),time_between_Colision(1.0f),points(0) {
+    : hp(100), dmg(10), gold(500), attack_speed(1), range_attack(250), movement_speed(100), potion(3), map(map), death(false), time_between_atack(0.5f),time_between_Colision(1.0f),points(0) {
     // Wczytanie tekstury gracza
     const std::string texturePath = "C:\\Users\\trole\\OneDrive\\Dokumenty\\GitHub\\Projekt_Zaliczeniowy_Issac_v2\\src\\textures\\player.png";
     if (!texture.loadFromFile(texturePath)) {

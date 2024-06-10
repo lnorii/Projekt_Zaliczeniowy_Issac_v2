@@ -119,7 +119,7 @@ void Game::display() {
             }
 
             if (auto interface = std::dynamic_pointer_cast<Interface>(obj)) {
-                interface->update();
+                interface->update(om.getwave());
             }
 
             if (auto player = std::dynamic_pointer_cast<Player>(obj)) {
