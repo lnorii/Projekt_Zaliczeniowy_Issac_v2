@@ -38,12 +38,14 @@ void Bullet::handleCollision(Enemy& Enemy) {
             if (Enemy.getHp() <= 0) {
                 Enemy.death = true;
                 std::cout << "Przeciwnik zabity!" << std::endl;
+                //fragment do debagowania
             }
             dell = true; // Oznacz pocisk do usunięcia po kolizji
             // std::cout << "Pocisk oznaczony do usunięcia." << std::endl;
         }
     } else {
         std::cout << "Przeciwnik nie istnieje!" << std::endl;
+        //fragment do debagowania
     }
 }
 

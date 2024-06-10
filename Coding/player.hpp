@@ -21,7 +21,7 @@ private:
     float movement_speed; // Szybkość poruszania się gracza
     int potion; // Liczba mikstur leczenia gracza
     bool death; // Flaga określająca, czy gracz nie żyje
-    int points;
+    int points; //liczba punktów
     sf::Sprite sprite; // Sprite gracza
     sf::Texture texture; // Tekstura gracza
     std::vector<std::unique_ptr<Bullet>> bullets; // Wektor przechowujący obiekty pocisków wystrzelonych przez gracza
@@ -29,8 +29,8 @@ private:
     std::shared_ptr<Map> map; // Wskaźnik na mapę, na której znajduje się gracz
     sf::Clock atack_frequency; // Zegar służący do określenia częstotliwości atakowania
     float time_between_atack; // Czas między kolejnymi atakami
-    sf::Clock colision_cooldown;
-    float time_between_Colision;
+    sf::Clock colision_cooldown; //Zegar do mierzenia ataków wroga
+    float time_between_Colision; //Czas między atakami wroga
 
 public:
     Player(sf::Vector2f position, std::shared_ptr<Map> map); // Konstruktor gracza

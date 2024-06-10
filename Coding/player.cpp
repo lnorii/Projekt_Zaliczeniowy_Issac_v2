@@ -145,7 +145,7 @@ sf::Sprite Player::getsprite() {
 int& Player::getgold(){
     return gold;
 }
-
+// Zwrócenie golda
 float& Player::getspeed(){
     return movement_speed;
 }
@@ -153,12 +153,13 @@ float& Player::getspeed(){
 float& Player::gettime_between_atack(){
     return time_between_atack;
 }
+// Zwrócenie czasu między atakiem
 
 bool Player::getdeath(){
     return death;
 }
-
+// Zwrócenie śmierci gracza
 int Player::getpoints(){
     return points;
 }
-
+// Zwrócenie punktów życia
