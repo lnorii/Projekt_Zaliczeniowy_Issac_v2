@@ -39,18 +39,18 @@ void Game::display() {
     bool player_r = false;
     // Flaga, czy przeciwnik jest już gotowy
     bool enemy_r = false;
-    // Flaga, czy gra się zakończyła
+    //czy flaga,czy gra się zakończyła
     bool end=false;
-    // zmienna przechowujące punkty gracza po zakończeniu gry
+    //zmienna przechowująca punkty gracza punkty gracza po śmierci
     int value;
-    // Tworzenie mapy, gracza ,skelpu , interafcju ,
+    // Tworzenie mapy,gracza,sklepu,interfacu
     om.createMap();
     om.createPlayer(sf::Vector2f(200, 200));
     om.createShop();
     om.createInterface(timer,window);
     // rozpoczęcie rozgrywki 
     om.startwave();
-
+    //rozpoczęcie rozgrywki
 
     // Główna pętla gry
     while (window.isOpen()) {
@@ -77,6 +77,7 @@ void Game::display() {
         for (auto& obj : gameObjects) {
             if(player_r && map_r){
 
+                //Fragment debugujący
                     // if(std::dynamic_pointer_cast<Map>(obj)){
                     //     cout<<"mapa"<<endl;
                     // }
@@ -98,17 +99,19 @@ void Game::display() {
                     // if(std::dynamic_pointer_cast<Shop>(obj)){
                     //     cout<<"sklep"<<endl;
                     // }
-                // rysowanie istniejących obieków
+
+                //rysowanie obiektów
                 window.draw(*obj);
             }
-
-            
+            //zapisywanie zdobytych punktów przez gracza do pliku txt
             if (auto ranking = std::dynamic_pointer_cast<Ranking>(obj)) {
                 if(!end){
                 ranking->writeToFile(value);
                 end=true;
                 }
             }
+
+
 
             if (auto map = std::dynamic_pointer_cast<Map>(obj)) {
                 if(!map_r){
@@ -121,7 +124,7 @@ void Game::display() {
                     map_r = true;
                 }
             }
-
+            //aktualizacja wyświetlania punktów hp,czasu oraz fali
             if (auto interface = std::dynamic_pointer_cast<Interface>(obj)) {
                 interface->update(om.getwave());
             }
@@ -133,12 +136,14 @@ void Game::display() {
                 player->updateBullets(elapsed, gameObjects);
                 player->colision(gameObjects);
                 player_r = true;
+                //wyczyszczenie obiektów oraz tworzenie rankingu
                 if(player->getdeath()){
                     value = player->getpoints();
                     gameObjects.clear();
                     om.createRanking(windowSize);
                     break;                   
                 }
+
                 for(auto& en : gameObjects){
                     if(auto enemy = std::dynamic_pointer_cast<Enemy>(en)){
                         // Obsługa ruchu przeciwników
@@ -146,21 +151,26 @@ void Game::display() {
                     }
                 }
             }
+
             if(auto shop = std::dynamic_pointer_cast<Shop>(obj)){
                 bool foundEnemy = false;
+                //flaga czy przeciwnik znajduje się w wektorze
                 for (auto& en : gameObjects) {
                     if (std::dynamic_pointer_cast<Enemy>(en)) {
                         foundEnemy = true;
                         shop->aktywny = false;
                         break;
+
                     }
                 }
+
                 if (!foundEnemy) {
                     shop->aktywny = true;
                     shop->handleEvent(key);
                     if(!shop->aktywny){
                         om.startwave();
                         break;
+
                     }
                 }
             }
@@ -178,6 +188,7 @@ void Game::display() {
                 window.close();
             }
         }
+        //po zakończeniu rozgrywki zamknięcie okna
 
         // Wyświetlanie zawartości okna
         window.display();

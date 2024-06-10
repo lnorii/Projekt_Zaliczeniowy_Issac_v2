@@ -24,6 +24,7 @@ private:
     sf::RectangleShape WaveBackground;
     sf::RenderWindow &window;
 
+
 protected:
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const override;
 
