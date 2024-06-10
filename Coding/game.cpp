@@ -39,15 +39,16 @@ void Game::display() {
     bool player_r = false;
     // Flaga, czy przeciwnik jest już gotowy
     bool enemy_r = false;
-
+    // Flaga, czy gra się zakończyła
     bool end=false;
-
+    // zmienna przechowujące punkty gracza po zakończeniu gry
     int value;
-    // Tworzenie mapy
+    // Tworzenie mapy, gracza ,skelpu , interafcju ,
     om.createMap();
     om.createPlayer(sf::Vector2f(200, 200));
     om.createShop();
     om.createInterface(timer,window);
+    // rozpoczęcie rozgrywki 
     om.startwave();
 
 
@@ -75,6 +76,7 @@ void Game::display() {
         // Renderowanie każdego obiektu na ekranie
         for (auto& obj : gameObjects) {
             if(player_r && map_r){
+
                     // if(std::dynamic_pointer_cast<Map>(obj)){
                     //     cout<<"mapa"<<endl;
                     // }
@@ -96,9 +98,11 @@ void Game::display() {
                     // if(std::dynamic_pointer_cast<Shop>(obj)){
                     //     cout<<"sklep"<<endl;
                     // }
+                // rysowanie istniejących obieków
                 window.draw(*obj);
             }
 
+            
             if (auto ranking = std::dynamic_pointer_cast<Ranking>(obj)) {
                 if(!end){
                 ranking->writeToFile(value);
